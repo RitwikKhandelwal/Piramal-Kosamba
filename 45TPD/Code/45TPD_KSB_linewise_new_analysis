@@ -1,0 +1,225 @@
+{
+  "version": "1.0.0",
+  "cells": [
+    {
+      "type": "cs",
+      "input": "assist"
+    },
+    {
+      "type": "cs",
+      "input": "importFiles"
+    },
+    {
+      "type": "cs",
+      "input": "importFiles [ \"C:\\\\Users\\\\ritwi\\\\Desktop\\\\ripik ai\\\\KSB\\\\45TPD\\\\new data\\\\b5_flatfile_apr_may2022.csv\" ]"
+    },
+    {
+      "type": "cs",
+      "input": "setupParse source_frames: [ \"nfs:\\\\C:\\\\Users\\\\ritwi\\\\Desktop\\\\ripik ai\\\\KSB\\\\45TPD\\\\new data\\\\b5_flatfile_apr_may2022.csv\" ]"
+    },
+    {
+      "type": "cs",
+      "input": "parseFiles\n  source_frames: [\"nfs:\\\\C:\\\\Users\\\\ritwi\\\\Desktop\\\\ripik ai\\\\KSB\\\\45TPD\\\\new data\\\\b5_flatfile_apr_may2022.csv\"]\n  destination_frame: \"b5_flatfile_apr_may2022.hex\"\n  parse_type: \"CSV\"\n  separator: 44\n  number_columns: 85\n  single_quotes: false\n  column_names: [\"Date\",\"DPR_Eff\",\"PTM\",\"SiO2\",\"Al2O3\",\"Fe2O3\",\"B2O3\",\"CaO\",\"MgO\",\"BaO\",\"Na2O\",\"K2O\",\"SO3\",\"F2\",\"TiO2\",\"CaO+MgO+BaO\",\"Na2O+K2O\",\"Density\",\"B04_Seed_count\",\"B05_Seed_count\",\"B06_Seed_count\",\"DTFP_PV\",\"FOT_DIST_PV\",\"FT_MOF25_PV\",\"GL_M_PV\",\"HPPT_21A_PV\",\"HPPT_21A_SV\",\"HPPT_22_PV\",\"HPPT_22_SV\",\"HPPT_23_PV\",\"HPPT_23_SV\",\"LPPT_21A_PV\",\"LPPT_21A_SV\",\"LPPT_21B_PV\",\"LPPT_21B_SV\",\"LPPT_22_PV\",\"LPPT_22_SV\",\"LPPT_23_PV\",\"LPPT_23_SV\",\"PT_HGP_2_PV\",\"RLB_PV\",\"RLM_PV\",\"RLT_PV\",\"RRB_PV\",\"RRM_PV\",\"RRT_PV\",\"SecData\",\"TCAFCL_PV\",\"TC_21AFB_PV\",\"TC_21AFT_PV\",\"TC_21AFT_SV\",\"TC_21BFB_PV\",\"TC_21BFT_PV\",\"TC_21BFT_SV\",\"TC_21MB_PV\",\"TC_21MT_PV\",\"TC_21RB_PV\",\"TC_21RT_PV\",\"TC_22FB_PV\",\"TC_22FT_PV\",\"TC_22RB_PV\",\"TC_22RT_PV\",\"TC_22RT_SV\",\"TC_23FB_PV\",\"TC_23FT_PV\",\"TC_23RB_PV\",\"TC_23RT_PV\",\"TC_23RT_SV\",\"TC_MB_1_2_PV\",\"TC_MB_2_2_PV\",\"TC_MB_3_2_PV\",\"TC_MB_4_2_PV\",\"TC_MB_5_2_PV\",\"TC_MC_1_2_PV\",\"TC_MC_2_2_PV\",\"TC_R_PV\",\"TC_THR_PV\",\"TC_WGCR_PV\",\"TGFC_PV\",\"THAFCL_PV\",\"THAFCR_PV\",\"THAMEL_PV\",\"THAMER_PV\",\"THA_PV\",\"TSL_PV\"]\n  column_types: [\"String\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\"]\n  delete_on_done: true\n  check_header: 1\n  chunk_size: 4194304\n  escapechar: undefined"
+    },
+    {
+      "type": "cs",
+      "input": "getFrameSummary \"b5_flatfile_apr_may2022.hex\""
+    },
+    {
+      "type": "cs",
+      "input": "splitFrame"
+    },
+    {
+      "type": "cs",
+      "input": "splitFrame \"b5_flatfile_apr_may2022.hex\", [0.7], [\"b5_70.hex\",\"b5_30.hex\"], 10111"
+    },
+    {
+      "type": "cs",
+      "input": "getFrameSummary \"b5_70.hex\""
+    },
+    {
+      "type": "cs",
+      "input": "assist buildModel, null, training_frame: \"b5_70.hex\""
+    },
+    {
+      "type": "cs",
+      "input": "buildModel 'drf', {\"model_id\":\"drf-2a955865-ebd6-421b-8f3a-2a6231896720\",\"training_frame\":\"b5_70.hex\",\"validation_frame\":\"b5_30.hex\",\"nfolds\":0,\"response_column\":\"DPR_Eff\",\"ignored_columns\":[\"DPR_Eff\",\"PTM\",\"B04_Seed_count\",\"B06_Seed_count\"],\"ignore_const_cols\":true,\"ntrees\":20,\"max_depth\":20,\"min_rows\":1,\"nbins\":20,\"seed\":101112,\"mtries\":-1,\"sample_rate\":0.632,\"score_each_iteration\":false,\"score_tree_interval\":0,\"nbins_top_level\":1024,\"nbins_cats\":1024,\"r2_stopping\":1.7976931348623157e+308,\"stopping_rounds\":0,\"stopping_metric\":\"AUTO\",\"stopping_tolerance\":0.001,\"max_runtime_secs\":0,\"col_sample_rate_per_tree\":1,\"min_split_improvement\":0.00001,\"histogram_type\":\"AUTO\",\"categorical_encoding\":\"AUTO\",\"distribution\":\"AUTO\",\"gainslift_bins\":-1,\"auc_type\":\"AUTO\",\"build_tree_one_node\":false,\"sample_rate_per_class\":[],\"binomial_double_trees\":false,\"col_sample_rate_change_per_level\":1,\"calibrate_model\":false,\"check_constant_response\":true}"
+    },
+    {
+      "type": "cs",
+      "input": "getModel \"drf-2a955865-ebd6-421b-8f3a-2a6231896720\""
+    },
+    {
+      "type": "cs",
+      "input": "buildPartialDependence"
+    },
+    {
+      "type": "cs",
+      "input": ""
+    },
+    {
+      "type": "cs",
+      "input": "buildPartialDependence {\"destination_key\":\"pdp-233ad482-4838-400e-a495-725b388727cf\",\"model_id\":\"drf-2a955865-ebd6-421b-8f3a-2a6231896720\",\"frame_id\":\"b5_30.hex\",\"cols\":\"[\\\"SiO2\\\",\\\"Na2O\\\",\\\"LPPT_21B_PV\\\",\\\"TC_23FT_PV\\\",\\\"TC_MB_4_2_PV\\\",]\",\"targets\":\"\",\"col_pairs_2dpdp\":\"\",\"nbins\":20,\"row_index\":-1}"
+    },
+    {
+      "type": "cs",
+      "input": "getPartialDependence \"pdp-233ad482-4838-400e-a495-725b388727cf\""
+    },
+    {
+      "type": "cs",
+      "input": "importFiles"
+    },
+    {
+      "type": "cs",
+      "input": "importFiles [ \"C:\\\\Users\\\\ritwi\\\\Desktop\\\\ripik ai\\\\KSB\\\\45TPD\\\\new data\\\\b6_flatfile_apr_may2022.csv\" ]"
+    },
+    {
+      "type": "cs",
+      "input": "setupParse source_frames: [ \"nfs:\\\\C:\\\\Users\\\\ritwi\\\\Desktop\\\\ripik ai\\\\KSB\\\\45TPD\\\\new data\\\\b6_flatfile_apr_may2022.csv\" ]"
+    },
+    {
+      "type": "cs",
+      "input": "parseFiles\n  source_frames: [\"nfs:\\\\C:\\\\Users\\\\ritwi\\\\Desktop\\\\ripik ai\\\\KSB\\\\45TPD\\\\new data\\\\b6_flatfile_apr_may2022.csv\"]\n  destination_frame: \"b6_flatfile_apr_may2022.hex\"\n  parse_type: \"CSV\"\n  separator: 44\n  number_columns: 85\n  single_quotes: false\n  column_names: [\"Date\",\"DPR_Eff\",\"PTM\",\"SiO2\",\"Al2O3\",\"Fe2O3\",\"B2O3\",\"CaO\",\"MgO\",\"BaO\",\"Na2O\",\"K2O\",\"SO3\",\"F2\",\"TiO2\",\"CaO+MgO+BaO\",\"Na2O+K2O\",\"Density\",\"B04_Seed_count\",\"B05_Seed_count\",\"B06_Seed_count\",\"DTFP_PV\",\"FOT_DIST_PV\",\"FT_MOF25_PV\",\"GL_M_PV\",\"HPPT_21A_PV\",\"HPPT_21A_SV\",\"HPPT_22_PV\",\"HPPT_22_SV\",\"HPPT_23_PV\",\"HPPT_23_SV\",\"LPPT_21A_PV\",\"LPPT_21A_SV\",\"LPPT_21B_PV\",\"LPPT_21B_SV\",\"LPPT_22_PV\",\"LPPT_22_SV\",\"LPPT_23_PV\",\"LPPT_23_SV\",\"PT_HGP_2_PV\",\"RLB_PV\",\"RLM_PV\",\"RLT_PV\",\"RRB_PV\",\"RRM_PV\",\"RRT_PV\",\"SecData\",\"TCAFCL_PV\",\"TC_21AFB_PV\",\"TC_21AFT_PV\",\"TC_21AFT_SV\",\"TC_21BFB_PV\",\"TC_21BFT_PV\",\"TC_21BFT_SV\",\"TC_21MB_PV\",\"TC_21MT_PV\",\"TC_21RB_PV\",\"TC_21RT_PV\",\"TC_22FB_PV\",\"TC_22FT_PV\",\"TC_22RB_PV\",\"TC_22RT_PV\",\"TC_22RT_SV\",\"TC_23FB_PV\",\"TC_23FT_PV\",\"TC_23RB_PV\",\"TC_23RT_PV\",\"TC_23RT_SV\",\"TC_MB_1_2_PV\",\"TC_MB_2_2_PV\",\"TC_MB_3_2_PV\",\"TC_MB_4_2_PV\",\"TC_MB_5_2_PV\",\"TC_MC_1_2_PV\",\"TC_MC_2_2_PV\",\"TC_R_PV\",\"TC_THR_PV\",\"TC_WGCR_PV\",\"TGFC_PV\",\"THAFCL_PV\",\"THAFCR_PV\",\"THAMEL_PV\",\"THAMER_PV\",\"THA_PV\",\"TSL_PV\"]\n  column_types: [\"String\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\"]\n  delete_on_done: true\n  check_header: 1\n  chunk_size: 4194304\n  escapechar: undefined"
+    },
+    {
+      "type": "cs",
+      "input": "getFrameSummary \"b6_flatfile_apr_may2022.hex\""
+    },
+    {
+      "type": "cs",
+      "input": "assist splitFrame, \"b6_flatfile_apr_may2022.hex\""
+    },
+    {
+      "type": "cs",
+      "input": "splitFrame \"b6_flatfile_apr_may2022.hex\", [0.7], [\"b6_70.hex\",\"b6_30.hex\"], 10111"
+    },
+    {
+      "type": "cs",
+      "input": "getFrameSummary \"b6_70.hex\""
+    },
+    {
+      "type": "cs",
+      "input": "assist buildModel, null, training_frame: \"b6_70.hex\""
+    },
+    {
+      "type": "cs",
+      "input": "buildModel 'drf', {\"model_id\":\"drf-0c357c15-1cbc-4807-b68d-98e893408c98\",\"training_frame\":\"b6_70.hex\",\"validation_frame\":\"b6_30.hex\",\"nfolds\":0,\"response_column\":\"DPR_Eff\",\"ignored_columns\":[\"DPR_Eff\",\"PTM\",\"SiO2\",\"Al2O3\",\"Fe2O3\",\"B2O3\",\"CaO\",\"MgO\",\"BaO\",\"Na2O\",\"K2O\",\"SO3\",\"F2\",\"TiO2\",\"CaO+MgO+BaO\",\"Na2O+K2O\",\"B04_Seed_count\",\"B05_Seed_count\"],\"ignore_const_cols\":true,\"ntrees\":15,\"max_depth\":20,\"min_rows\":1,\"nbins\":20,\"seed\":10139,\"mtries\":-1,\"sample_rate\":0.632,\"score_each_iteration\":false,\"score_tree_interval\":0,\"nbins_top_level\":1024,\"nbins_cats\":1024,\"r2_stopping\":1.7976931348623157e+308,\"stopping_rounds\":0,\"stopping_metric\":\"AUTO\",\"stopping_tolerance\":0.001,\"max_runtime_secs\":0,\"col_sample_rate_per_tree\":1,\"min_split_improvement\":0.00001,\"histogram_type\":\"AUTO\",\"categorical_encoding\":\"AUTO\",\"distribution\":\"AUTO\",\"gainslift_bins\":-1,\"auc_type\":\"AUTO\",\"build_tree_one_node\":false,\"sample_rate_per_class\":[],\"binomial_double_trees\":false,\"col_sample_rate_change_per_level\":1,\"calibrate_model\":false,\"check_constant_response\":true}"
+    },
+    {
+      "type": "cs",
+      "input": "getModel \"drf-0c357c15-1cbc-4807-b68d-98e893408c98\""
+    },
+    {
+      "type": "cs",
+      "input": "buildPartialDependence"
+    },
+    {
+      "type": "cs",
+      "input": ""
+    },
+    {
+      "type": "cs",
+      "input": "buildPartialDependence {\"destination_key\":\"pdp-c4a0cf1a-8ae1-4705-ad52-998c9113366f\",\"model_id\":\"drf-0c357c15-1cbc-4807-b68d-98e893408c98\",\"frame_id\":\"b6_30.hex\",\"cols\":\"[\\\"HPPT_23_PV\\\",\\\"RLM_PV\\\",\\\"TC_WGCR_PV\\\",\\\"THAFCL_PV\\\",\\\"THAMEL_PV\\\",]\",\"targets\":\"\",\"col_pairs_2dpdp\":\"\",\"nbins\":20,\"row_index\":-1}"
+    },
+    {
+      "type": "cs",
+      "input": "getPartialDependence \"pdp-c4a0cf1a-8ae1-4705-ad52-998c9113366f\""
+    },
+    {
+      "type": "cs",
+      "input": "#trying different training specs for line 5"
+    },
+    {
+      "type": "cs",
+      "input": "splitFrame"
+    },
+    {
+      "type": "cs",
+      "input": "splitFrame \"b5_flatfile_apr_may2022.hex\", [0.85], [\"b5_85.hex\",\"b5_15.hex\"], 10111"
+    },
+    {
+      "type": "cs",
+      "input": "getFrameSummary \"b5_85.hex\""
+    },
+    {
+      "type": "cs",
+      "input": "assist buildModel, null, training_frame: \"b5_85.hex\""
+    },
+    {
+      "type": "cs",
+      "input": "buildModel 'drf', {\"model_id\":\"drf-02583912-8083-4891-a556-6bb57b5dd025\",\"training_frame\":\"b5_85.hex\",\"validation_frame\":\"b5_15.hex\",\"nfolds\":0,\"response_column\":\"DPR_Eff\",\"ignored_columns\":[\"DPR_Eff\",\"PTM\"],\"ignore_const_cols\":true,\"ntrees\":15,\"max_depth\":20,\"min_rows\":1,\"nbins\":20,\"seed\":10111,\"mtries\":-1,\"sample_rate\":0.632,\"score_each_iteration\":false,\"score_tree_interval\":0,\"nbins_top_level\":1024,\"nbins_cats\":1024,\"r2_stopping\":1.7976931348623157e+308,\"stopping_rounds\":0,\"stopping_metric\":\"AUTO\",\"stopping_tolerance\":0.001,\"max_runtime_secs\":0,\"col_sample_rate_per_tree\":1,\"min_split_improvement\":0.00001,\"histogram_type\":\"AUTO\",\"categorical_encoding\":\"AUTO\",\"distribution\":\"AUTO\",\"gainslift_bins\":-1,\"auc_type\":\"AUTO\",\"build_tree_one_node\":false,\"sample_rate_per_class\":[],\"binomial_double_trees\":false,\"col_sample_rate_change_per_level\":1,\"calibrate_model\":false,\"check_constant_response\":true}"
+    },
+    {
+      "type": "cs",
+      "input": "getModel \"drf-02583912-8083-4891-a556-6bb57b5dd025\""
+    },
+    {
+      "type": "cs",
+      "input": ""
+    },
+    {
+      "type": "cs",
+      "input": "getFrameData \"b5_85.hex\""
+    },
+    {
+      "type": "cs",
+      "input": "#B5 modified"
+    },
+    {
+      "type": "cs",
+      "input": "importFiles"
+    },
+    {
+      "type": "cs",
+      "input": "importFiles [ \"C:\\\\Users\\\\ritwi\\\\Desktop\\\\ripik ai\\\\KSB\\\\45TPD\\\\new data\\\\b5_flatfile_apr_may2022_modified.csv\" ]"
+    },
+    {
+      "type": "cs",
+      "input": "setupParse source_frames: [ \"nfs:\\\\C:\\\\Users\\\\ritwi\\\\Desktop\\\\ripik ai\\\\KSB\\\\45TPD\\\\new data\\\\b5_flatfile_apr_may2022_modified.csv\" ]"
+    },
+    {
+      "type": "cs",
+      "input": "parseFiles\n  source_frames: [\"nfs:\\\\C:\\\\Users\\\\ritwi\\\\Desktop\\\\ripik ai\\\\KSB\\\\45TPD\\\\new data\\\\b5_flatfile_apr_may2022_modified.csv\"]\n  destination_frame: \"b5_flatfile_apr_may2022_modified.hex\"\n  parse_type: \"CSV\"\n  separator: 44\n  number_columns: 85\n  single_quotes: false\n  column_names: [\"Date\",\"DPR_Eff\",\"PTM\",\"SiO2\",\"Al2O3\",\"Fe2O3\",\"B2O3\",\"CaO\",\"MgO\",\"BaO\",\"Na2O\",\"K2O\",\"SO3\",\"F2\",\"TiO2\",\"CaO+MgO+BaO\",\"Na2O+K2O\",\"Density\",\"B04_Seed_count\",\"B05_Seed_count\",\"B06_Seed_count\",\"DTFP_PV\",\"FOT_DIST_PV\",\"FT_MOF25_PV\",\"GL_M_PV\",\"HPPT_21A_PV\",\"HPPT_21A_SV\",\"HPPT_22_PV\",\"HPPT_22_SV\",\"HPPT_23_PV\",\"HPPT_23_SV\",\"LPPT_21A_PV\",\"LPPT_21A_SV\",\"LPPT_21B_PV\",\"LPPT_21B_SV\",\"LPPT_22_PV\",\"LPPT_22_SV\",\"LPPT_23_PV\",\"LPPT_23_SV\",\"PT_HGP_2_PV\",\"RLB_PV\",\"RLM_PV\",\"RLT_PV\",\"RRB_PV\",\"RRM_PV\",\"RRT_PV\",\"SecData\",\"TCAFCL_PV\",\"TC_21AFB_PV\",\"TC_21AFT_PV\",\"TC_21AFT_SV\",\"TC_21BFB_PV\",\"TC_21BFT_PV\",\"TC_21BFT_SV\",\"TC_21MB_PV\",\"TC_21MT_PV\",\"TC_21RB_PV\",\"TC_21RT_PV\",\"TC_22FB_PV\",\"TC_22FT_PV\",\"TC_22RB_PV\",\"TC_22RT_PV\",\"TC_22RT_SV\",\"TC_23FB_PV\",\"TC_23FT_PV\",\"TC_23RB_PV\",\"TC_23RT_PV\",\"TC_23RT_SV\",\"TC_MB_1_2_PV\",\"TC_MB_2_2_PV\",\"TC_MB_3_2_PV\",\"TC_MB_4_2_PV\",\"TC_MB_5_2_PV\",\"TC_MC_1_2_PV\",\"TC_MC_2_2_PV\",\"TC_R_PV\",\"TC_THR_PV\",\"TC_WGCR_PV\",\"TGFC_PV\",\"THAFCL_PV\",\"THAFCR_PV\",\"THAMEL_PV\",\"THAMER_PV\",\"THA_PV\",\"TSL_PV\"]\n  column_types: [\"String\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\"]\n  delete_on_done: true\n  check_header: 1\n  chunk_size: 4194304\n  escapechar: undefined"
+    },
+    {
+      "type": "cs",
+      "input": "getFrameSummary \"b5_flatfile_apr_may2022_modified.hex\""
+    },
+    {
+      "type": "cs",
+      "input": "splitFrame"
+    },
+    {
+      "type": "cs",
+      "input": "splitFrame \"b5_flatfile_apr_may2022_modified.hex\", [0.75], [\"b5_mod75.hex\",\"b5_mod25.hex\"], 1008"
+    },
+    {
+      "type": "cs",
+      "input": "getFrameSummary \"b5_mod75.hex\""
+    },
+    {
+      "type": "cs",
+      "input": "assist buildModel, null, training_frame: \"b5_mod75.hex\""
+    },
+    {
+      "type": "cs",
+      "input": "buildModel 'drf', {\"model_id\":\"drf-55e90400-1639-4a92-8d17-e4db8022d225\",\"training_frame\":\"b5_mod75.hex\",\"validation_frame\":\"b5_mod25.hex\",\"nfolds\":0,\"response_column\":\"DPR_Eff\",\"ignored_columns\":[\"PTM\",\"SiO2\",\"Al2O3\",\"Fe2O3\",\"B2O3\",\"CaO\",\"MgO\",\"BaO\",\"Na2O\",\"K2O\",\"SO3\",\"F2\",\"TiO2\",\"CaO+MgO+BaO\",\"Na2O+K2O\",\"Density\",\"B04_Seed_count\",\"B06_Seed_count\"],\"ignore_const_cols\":true,\"ntrees\":10,\"max_depth\":20,\"min_rows\":1,\"nbins\":20,\"seed\":1008,\"mtries\":-1,\"sample_rate\":0.632,\"score_each_iteration\":false,\"score_tree_interval\":0,\"nbins_top_level\":1024,\"nbins_cats\":1024,\"r2_stopping\":1.7976931348623157e+308,\"stopping_rounds\":0,\"stopping_metric\":\"AUTO\",\"stopping_tolerance\":0.001,\"max_runtime_secs\":0,\"col_sample_rate_per_tree\":1,\"min_split_improvement\":0.00001,\"histogram_type\":\"AUTO\",\"categorical_encoding\":\"AUTO\",\"distribution\":\"AUTO\",\"gainslift_bins\":-1,\"auc_type\":\"AUTO\",\"build_tree_one_node\":false,\"sample_rate_per_class\":[],\"binomial_double_trees\":false,\"col_sample_rate_change_per_level\":1,\"calibrate_model\":false,\"check_constant_response\":true}"
+    },
+    {
+      "type": "cs",
+      "input": "getModel \"drf-55e90400-1639-4a92-8d17-e4db8022d225\""
+    },
+    {
+      "type": "cs",
+      "input": "buildPartialDependence"
+    },
+    {
+      "type": "cs",
+      "input": "buildPartialDependence {\"destination_key\":\"pdp-1399ba38-6008-462a-bd16-908fb0d27f6a\",\"model_id\":\"drf-55e90400-1639-4a92-8d17-e4db8022d225\",\"frame_id\":\"b5_mod25.hex\",\"cols\":\"[\\\"HPPT_22_PV\\\",\\\"TC_21AFB_PV\\\",\\\"TC_21BFB_PV\\\",\\\"TC_22RT_PV\\\",\\\"TC_22RT_SV\\\",]\",\"targets\":\"\",\"col_pairs_2dpdp\":\"\",\"nbins\":20,\"row_index\":-1}"
+    },
+    {
+      "type": "cs",
+      "input": "getPartialDependence \"pdp-1399ba38-6008-462a-bd16-908fb0d27f6a\""
+    }
+  ]
+}
